@@ -11,7 +11,7 @@ class StockValuationAdjustmentLines(models.Model):
 class AccountMoveInherit(models.Model):
     _inherit = 'stock.landed.cost'
 
-    totals = fields.One2many('stock.valuation.adjustment.lines', 'move_ids', string='Landed Cost Total')
+    totals = fields.One2many('stock.valuation.adjustment.lines', 'move_ids')
     amount_total = fields.Monetary(string="Landed Cost Total")
     # custom_total = fields.Monetary(compute="compute_total")
     custom_total = fields.Monetary(compute="compute_total_new")
@@ -24,12 +24,12 @@ class AccountMoveInherit(models.Model):
     #         else:
     #             rec.custom_total = False
 
-    @api.onchange('amount_total', 'totals.is_computes', 'custom_total', 'totals.final_cost')
+    @api.onchange('amount_total', 'totals.is_computes', 'custom_total', 'totals.former_cost')
     def compute_total_new(self):
         for rec in self:
             sum = 0
             if rec.valuation_adjustment_lines:
                 for line in rec.valuation_adjustment_lines:
-                    if line.final_cost and line.is_computes:
-                        sum += line.final_cost
+                    if line.former_cost and line.is_computes:
+                        sum += line.former_cost
             rec.custom_total = sum + rec.amount_total
