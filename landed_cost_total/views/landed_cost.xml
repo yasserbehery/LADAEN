@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_move_form_custom1" model="ir.ui.view">
+            <field name="name">account.move.form.custom.hide12</field>
+            <field name="model">stock.landed.cost</field>
+            <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='valuation_adjustment_lines']/tree/field[@name='final_cost']"
+                       position="after">
+                    <field name="is_computes"/>
+
+                </xpath>
+
+                <xpath expr="//field[@name='vendor_bill_id']" position="after">
+                    <field name="amount_total"/>
+                    <field name="custom_total"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
