@@ -8,9 +8,9 @@
             <field name="inherit_id" ref="stock_landed_costs.view_stock_landed_cost_form"/>
             <field name="arch" type="xml">
 
-                <xpath expr="//field[@name='valuation_adjustment_lines']/tree/field[@name='former_cost']"
+                <xpath expr="//field[@name='valuation_adjustment_lines']/tree/field[@name='additional_landed_cost']"
                        position="after">
-                    <field name="is_computes"/>
+                    <field name="is_computes"/>                   <field name="is_computes2"/>
 
                 </xpath>
 
