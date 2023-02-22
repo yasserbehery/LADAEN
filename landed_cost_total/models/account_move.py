@@ -37,4 +37,4 @@ class AccountMoveInherit(models.Model):
                         sum += line.former_cost
                     if line.additional_landed_cost and line.is_computes2:
                         sum2 += line.additional_landed_cost
-            rec.custom_total = sum + rec.amount_total + sum2
+            rec.custom_total = sum + sum2
